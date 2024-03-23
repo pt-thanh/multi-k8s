@@ -17,3 +17,12 @@ after_success:
   - docker build -t ptthanh/multi-server ./server
   - docker build -t ptthanh/multi-worker ./worker
 
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  # take those images and push them to docker hub
+
+  - docker push ptthanh/multi-client
+  - docker push ptthanh/multi-nginx
+  - docker push ptthanh/multi-server
+  - docker push ptthanh/multi-worker
