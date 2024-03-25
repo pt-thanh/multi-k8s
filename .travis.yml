@@ -26,3 +26,16 @@ after_success:
   - docker push ptthanh/multi-nginx
   - docker push ptthanh/multi-server
   - docker push ptthanh/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'ca-central-1'
+  app: 'multi-docker'
+  env: 'Multi-docker-env'
+  bucket_name: 'elasticbeanstalk-ca-central-1-058264271224'
+  bucket_path: 'docker-multi'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+    
